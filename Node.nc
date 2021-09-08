@@ -18,6 +18,7 @@ module Node{
 
    uses interface SplitControl as AMControl;
    uses interface Receive;
+   // uses interface testingEdits 
 
    uses interface SimpleSend as Sender;
 
