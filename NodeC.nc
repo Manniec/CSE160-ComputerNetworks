@@ -31,7 +31,7 @@ implementation {
     components CommandHandlerC;
     Node.CommandHandler -> CommandHandlerC;
 
-    // Wire Flooding task in Node Module to Flooding config file
+    // Wire Flooding in Node Module to Flooding config file
     components FloodingC;
     Node.Flooding -> FloodingC;
 }
