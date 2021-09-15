@@ -1,3 +1,8 @@
+# Tasks
+ - [ ] Add interface Flooding and Neighbor to Node Module file
+ - [ ] specify config file for flooding module in Node Config
+
+
 # Introduction
 This skeleton code is the basis for the CSE160 network project. Additional documentation
 on what is expected will be provided as the school year continues.

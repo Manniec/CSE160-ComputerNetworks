@@ -19,6 +19,9 @@ module NodeP{
    uses interface SplitControl as AMControl;
    uses interface Receive;
 
+   // Add Flooding module
+   uses interface Flooding;
+
    uses interface SimpleSend as Sender;
 
    uses interface CommandHandler;
