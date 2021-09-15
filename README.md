@@ -5,6 +5,28 @@
 - [ ] Specify config file for flooding module in Node Config
 [] Neighbor task
 
+## NESC
+Tasks consist of 2 files
+ - Module File (naming convention => TaskP.nc)
+ - Configuration File (naming convention => TaskC.nc)
+
+Module Files consist of 3 sections
+- include statements (dependencies)
+- Module block
+- implement block
+
+Congigeration Files consist of 3 sections
+- include statements (dependencies)
+- Config block
+- Implement block
+
+To wire a module you need to do these things
+1. Add it as an interface under module file
+2. Add it as a component in implementation of config file
+3. Wire module's interface to its config file
+
+
+
 
 # Introduction
 This skeleton code is the basis for the CSE160 network project. Additional documentation
