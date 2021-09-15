@@ -34,4 +34,8 @@ implementation {
     // Wire Flooding in Node Module to Flooding config file
     components FloodingC;
     Node.Flooding -> FloodingC;
+
+    // Wire Neighbors in Node Module to Neighbors
+    components NeighborDiscoverC;
+    Node.Neighbors -> NeighborDiscoverC
 }

@@ -22,6 +22,9 @@ module NodeP{
    // Add Flooding module
    uses interface Flooding;
 
+   // Add Neighbors module
+   uses interface Neighbors
+
    uses interface SimpleSend as Sender;
 
    uses interface CommandHandler;

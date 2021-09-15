@@ -1,6 +1,6 @@
 //---INCLUDE---//
 
-//---Config---//
+//---CONFIG---//
 configuration{
 
     //PROVIDES
@@ -10,7 +10,7 @@ configuration{
     //USES
 }
 
-//---IMPLEMENTATION---//
+//---IMPLEMENT---//
 implementation{
 
     //Wire Flooding to Flooding in module file

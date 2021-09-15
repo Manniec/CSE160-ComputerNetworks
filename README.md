@@ -1,6 +1,9 @@
 # Tasks
- - [ ] Add interface Flooding and Neighbor to Node Module file
- - [ ] specify config file for flooding module in Node Config
+[] Flooding Module to Node Module
+- [ ] Create flooding module and config file
+- [ ] Add interface Flooding and Neighbor to Node Module file
+- [ ] Specify config file for flooding module in Node Config
+[] Neighbor task
 
 
 # Introduction
