@@ -13,12 +13,11 @@
 #include "includes/sendInfo.h"
 #include "includes/channels.h"
 
-module Node{
+module NodeP{
    uses interface Boot;
 
    uses interface SplitControl as AMControl;
    uses interface Receive;
-   // uses interface testingEdits 
 
    uses interface SimpleSend as Sender;
 
