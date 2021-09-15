@@ -37,5 +37,5 @@ implementation {
 
     // Wire Neighbors in Node Module to Neighbors
     components NeighborDiscoverC;
-    Node.Neighbors -> NeighborDiscoverC
+    Node.Neighbors -> NeighborDiscoverC;
 }
