@@ -4,17 +4,21 @@
 module FloodingP{
 
     //PROVIDES
-
-    //specify Flooding task as an interface (so Node Module can call it)
-    Provides interface Flooding;
+    provides interface Flooding;
 
     //USES
-
-
+    uses interface SimpleSend;
+    uses interface NeighborDiscover;
+    uses interface Packet;
+    uses interface AMPacket;
     
 }
 
 //---IMPLEMENTATION---//
 implementation{
+    
+    //Implement Flooding using SimpleSendP.nc
+
+
 
 }

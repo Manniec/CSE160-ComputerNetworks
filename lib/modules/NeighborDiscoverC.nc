@@ -1,10 +1,10 @@
 //---INCLUDE---//
 
 //---CONFIG---//
-configuration{
+configuration NeighborDiscoverC{
 
     //PROVIDES
-    Provides interface Neighbors;
+    provides interface NeighborDiscover;
 
     //USES
 }
@@ -14,6 +14,6 @@ implementation{
 
     //Wire Flooding to Flooding in module file
     components NeighborDiscoverP;
-    Neighbors = NeighborDiscoverP.Neighbors;
+    NeighborDiscover = NeighborDiscoverP.NeighborDiscover;
 
 }

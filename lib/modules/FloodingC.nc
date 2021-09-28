@@ -1,20 +1,20 @@
 //---INCLUDE---//
 
 //---CONFIG---//
-configuration{
+configuration FloodingC{
 
     //PROVIDES
+    provides interface Flooding;
 
-    Provides interface Flooding;
-
-    //USES
 }
 
 //---IMPLEMENT---//
 implementation{
 
-    //Wire Flooding to Flooding in module file
+    //Wire to Flooding in module file
     components FloodingP;
     Flooding = FloodingP.Flooding;
+
+
 
 }
