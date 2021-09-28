@@ -15,27 +15,27 @@ configuration NodeC{
 }
 implementation {
     components MainC;
-    components Node;
+    components NodeP;
     components new AMReceiverC(AM_PACK) as GeneralReceive;
 
-    Node -> MainC.Boot;
+    NodeP -> MainC.Boot;
 
-    Node.Receive -> GeneralReceive;
+    NodeP.Receive -> GeneralReceive;
 
     components ActiveMessageC;
-    Node.AMControl -> ActiveMessageC;
+    NodeP.AMControl -> ActiveMessageC;
 
     components new SimpleSendC(AM_PACK);
-    Node.Sender -> SimpleSendC;
+    NodeP.Sender -> SimpleSendC;
 
     components CommandHandlerC;
-    Node.CommandHandler -> CommandHandlerC;
+    NodeP.CommandHandler -> CommandHandlerC;
 
     // Wire Flooding in Node Module to Flooding config file
     components FloodingC;
-    Node.Flooding -> FloodingC;
+    NodeP.Flooding -> FloodingC;
 
     // Wire Neighbors in Node Module to Neighbors
     components NeighborDiscoverC;
-    Node.Neighbors -> NeighborDiscoverC;
+    NodeP.NeighborDiscover -> NeighborDiscoverC;
 }

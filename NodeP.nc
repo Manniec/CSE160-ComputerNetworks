@@ -23,7 +23,7 @@ module NodeP{
    uses interface Flooding;
 
    // Add Neighbors module
-   uses interface Neighbors
+   uses interface NeighborDiscover;
 
    uses interface SimpleSend as Sender;
 
