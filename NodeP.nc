@@ -32,6 +32,7 @@ module NodeP{
 
 implementation{
    pack sendPackage;
+   uint16_t sequenceNum = 0; //node sequenceNum
 
    // Prototypes
    void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, uint8_t *payload, uint8_t length);
@@ -64,10 +65,14 @@ implementation{
       return msg;
    }
 
+   // Increment sequence number whenever neighbor discovery ping is sent
+   event void Sender.send(){
+      sequenceNum ++;
+   }
 
    event void CommandHandler.ping(uint16_t destination, uint8_t *payload){
       dbg(GENERAL_CHANNEL, "PING EVENT \n");
-      makePack(&sendPackage, TOS_NODE_ID, destination, 0, 0, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
+      makePack(&sendPackage, TOS_NODE_ID, destination, 0, 0, sequenceNum, payload, PACKET_MAX_PAYLOAD_SIZE);
       call Sender.send(sendPackage, destination);
    }
 
