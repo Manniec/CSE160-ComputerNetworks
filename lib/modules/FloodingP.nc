@@ -7,34 +7,45 @@ module FloodingP{
     provides interface Flooding;
 
     //USES
-    uses interface SimpleSend;
+    //uses interface SimpleSend as Sender;
     uses interface NeighborDiscover;
-    uses interface Packet;
-    uses interface AMPacket;
+    
+    uses interface Hashmap<uint16_t> as Cache; //table of nodes and most recent seq number
+    uses interface List<uint16_t> as NeighborsList;
     
 }
 
 //---IMPLEMENTATION---//
 implementation{
 
-    // Define cache item for latest packet
-    typedef struct cache{
-        uint16_t seq;
-        uint16_t local_src; //node the packet received from
-    }cache;
+    // Define functions
+     bool isNewPacket(uint16_t node, uint16_t sequenceNum);
 
-    //Implement initial Flooding using SimpleSendP.nc
-    command error_t Flooding.flood(pack msg){
+
+    command error_t Flooding.addToCache(uint16_t node, uint16_t sequenceNum){
+        if(isNewPacket(node, sequenceNum)){
+            call Cache.remove(node);
+            call Cache.insert(node, sequenceNum);
+            return SUCCESS;
+        }
         return FAIL;
     }
 
-    //Implement Flooding forwarding using SimpleSendP.nc
-    //event void Flooding.forward(pack msg){}
-
-    //void checkCache(sendInfo* input){}
-
-    // bool isNewPacket(sendInfo* input){}
-
+    // Get latest sequence number received from a node
+    command uint16_t Flooding.getLastSeq(uint16_t node){
+        // Check if node exists in cache
+        if (call Cache.contains(node)){
+            return call Cache.get(node);
+        } 
+        return 0; // Return zero if node doesn't exist yet in cache
+    }
     
+    bool isNewPacket(uint16_t node, uint16_t sequenceNum){
+        if((call Cache.contains(node)) && (sequenceNum <= call Cache.get(node))){
+            return FALSE;
+        }
+        return TRUE;
+
+    }
 
 }

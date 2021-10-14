@@ -30,3 +30,23 @@ Note: Because your accessing files on your local computer and not a copy, make s
 `docker attach <containername>` : re-enter pseudo terminal for running container
 
 `docker rm <containername>` : delete a container 
+
+# how to run
+1. launch docker container 
+```
+docker run --name CSE160_p1 -v "/Users/manniec/GitHub/CSE160-ComputerNetworks:/home/cse160" -it ucmercedandeslab/tinyos_debian /bin/bash
+
+```
+2. Navigate to directory with code
+```
+cd home/cse160/
+```
+3. Run make line
+```
+make micaz sim
+```
+
+4. Run program
+```
+python TOSSIM.py
+```

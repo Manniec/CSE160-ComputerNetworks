@@ -9,6 +9,8 @@ enum{
 	SEND_BUFFER_SIZE=128
 };
 
+//Link Layer Header (local hop by hope source and destination addresses)
+
 typedef struct sendInfo{
 	pack packet;
 	uint16_t src;

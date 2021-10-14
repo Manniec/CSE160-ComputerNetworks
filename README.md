@@ -25,6 +25,61 @@ To wire a module you need to do these things
 2. Add it as a component in implementation of config file
 3. Wire module's interface to its config file
 
+# Project 1: Flooding
+
+## Flooding
+
+### Concept
+
+For a node to flood a packet, the packet needs the following information:
+- **source address:** the node initiating the flood; global source of packet
+- **sequence number:** monotonically increasing unique identifier
+- **TTL:** time to live, decrements at each hop to prevent packets from looping forever
+- **(local) source address:** which immediate neighbor did the node receive the packet from?
+- **(local) destination address:** node receiving packet at this hop
+
+Nodes also need to recognize duplicate packets, and old packets to prevent looping/resending them. Nodes need to remember the latest packet's:
+- **(global) source address:** packets from same source with same seq number shouldn't be rebroadcast (its a duplicate)
+- **sequence number:** because its a monotonically increasing unique id, new packet sequence numbers should always be >= the last one; prevents node from forwarding same packet twice
+
+
+Two ways to think about flooding a packet to all your neighbors:
+
+1. **Send wirelessly:** wireless is already a *broadcast medium* so you can sent a packet once to everyone and whoever hears you & replys is a neighbor.
+2. **Send wired:** send a copy of the packet more than to each of your known neighbors serially (needs neighbor discovery)
+
+> Flooding vs Neighbor Discovery:
+> Flooding is global. Its for when you would like a message to reach every other node in the system. Neighbor discovery is local (at the node level) when a node wants to send a message to only the nodes immediately surrounding it
+
+
+### Implementation
+
+**Flooding Packet**
+|Layer| In code Representation| Info |  |  |  |
+|--- | --- | --- | ---| --- | --- |
+| Applicaiton Payload  | *nx_uint8_t* variable in **packet.h** | Payload |
+| Flooding Header | *pack* struct in **packet.h** | (global) source address | sequence number | TTL |
+| Link Layer Header | *sendInfo* struct in **sendinfo.h** | (local) source address | (local) destination address |
+
+**Node Table**
+| Incode Representation | Info | |
+|---|---|---|
+| *Cache* Hashmap in **FloodingP.nc** | packet (global) source *as uint32_t* | packet sequence number *as uint16_t*
+
+One entry per node in network. Fill table out as packets are received
+
+## Neighbor Discovery
+Nodes can die and links can degrade at any time, so neighbor discover needs to be run in the background sending neighbor discovery packets periodically. This helps react to:
+- Dead nodes
+- Degrading link quality (noise): seq number can identify missing packets; time between ping&reply tells u rtt
+
+### Concept
+To implement neighbor discovery, you need to differentiate neighbor discovery packets from normal ones. Packet headers need:
+- **request or reply field:** 
+- **sequence number:** monotonically increasing unique identifier
+- **(local) source address:** hop to hop link layer
+
+Neighbor table
 
 
 
